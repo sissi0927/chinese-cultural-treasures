@@ -486,7 +486,6 @@ a {
   color: var(--text-muted);
 }
 
-/* LOADING OVERLAY */
 #loading-overlay {
   position: absolute;
   inset: 0;
@@ -511,14 +510,12 @@ a {
   color: var(--brown);
 }
 
-/* THREE.JS CANVAS */
 #model-container canvas {
   display: block;
   width: 100% !important;
   height: 100% !important;
 }
 
-/* ABOUT PAGE */
 .about-hero {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -640,7 +637,6 @@ a {
   }
 }
 
-/* ─── Cultural Gallery ────────────────────────────────────────────────────── */
 
 .gallery-section {
   margin-bottom: 22px;
