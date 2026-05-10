@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chinese Cultural Exhibition</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Three.js via importmap (no bundler required) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body class="ink-theme">
+  <div class="ink-bg"></div>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-block">
+        <h1>Chinese Cultural Treasures</h1>
+        <p class="brand-subtitle">
+            An interactive Web 3D exhibition inspired by Chinese traditional aesthetics, symbolic objects, and cultural storytelling
+        </p>
+      </div>
+
+      <nav class="site-nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-layout">
+      <div class="viewer-panel">
+        <div class="panel-head compact-head">
+          <div>
+            <p class="eyebrow">Main Viewer</p>
+            <h2 id="current-model-name">Chinese Round Fan</h2>
+          </div>
+          <div class="viewer-tag">Ready</div>
+        </div>
+
+        <div id="model-container">
+          <div id="loading-overlay">
+            <span id="loading-text">Loading model…</span>
+          </div>
+        </div>
+
+        <div class="viewer-meta">
+          <div class="meta-box">
+            <span class="meta-label">Theme</span>
+            <span id="meta-theme">Traditional Object</span>
+          </div>
+          <div class="meta-box">
+            <span class="meta-label">Material</span>
+            <span id="meta-material">Wood / fabric / tassel</span>
+          </div>
+          <div class="meta-box">
+            <span class="meta-label">Style</span>
+            <span id="meta-style">Elegant Chinese aesthetics</span>
+          </div>
+        </div>
+
+        <div class="status-strip">
+          <div class="status-item">
+            <span class="status-name">Selected Model</span>
+            <strong id="selected-model-status">Fan</strong>
+          </div>
+          <div class="status-item">
+            <span class="status-name">Wireframe</span>
+            <strong id="wireframe-status">Off</strong>
+          </div>
+          <div class="status-item">
+            <span class="status-name">Light</span>
+            <strong id="light-status">Off</strong>
+          </div>
+          <div class="status-item">
+            <span class="status-name">Camera</span>
+            <strong id="camera-status">Front</strong>
+          </div>
+          <div class="status-item">
+            <span class="status-name">Music</span>
+            <strong id="audio-status">Off</strong>
+          </div>
+        </div>
+
+        <!-- Background ambient audio -->
+        <audio id="bgm" loop>
+          <source src="assets/audio/bgm.mp3" type="audio/mpeg" />
+        </audio>
+      </div>
+
+      <aside class="side-info">
+        <div class="info-block">
+          <p class="eyebrow">Object Description</p>
+          <h3>Description</h3>
+          <p id="model-description">
+            The Chinese round fan is presented here as a symbol of elegance, refinement, and decorative heritage. Within the exhibition, it represents the grace and restraint often associated with Chinese classical aesthetics.
+          </p>
+        </div>
+
+        <div class="info-block">
+          <p class="eyebrow">Cultural Context</p>
+          <h3>Meaning</h3>
+          <p id="model-context">
+            In Chinese visual culture, the fan carries both practical and symbolic meaning. It is linked with poise, cultivated taste, and gentle expression, and frequently appears in painting, costume, and decorative imagery.
+          </p>
+        </div>
+
+        <div class="info-block">
+          <p class="eyebrow">Design Notes</p>
+          <h3>Concept</h3>
+          <p id="model-concept">
+            This object was selected for its balance, symmetry, and visual delicacy. Its circular silhouette and ornamental surface make it an effective emblem of traditional Chinese design language.
+          </p>
+        </div>
+
+        <div class="info-block">
+          <p class="eyebrow">Interaction</p>
+          <h3>Controls</h3>
+          <p>
+            Use the square buttons below to switch model, control light, change camera view,
+            and toggle wireframe mode.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="controls-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Interaction Panel</p>
+          <h2>Controls</h2>
+        </div>
+      </div>
+
+      <div class="controls-grid">
+        <div class="control-card">
+          <h3>Model Switch</h3>
+          <div class="square-btn-grid">
+            <button class="square-btn model-btn active-btn" data-model="fan">Fan</button>
+            <button class="square-btn model-btn" data-model="panda">Panda</button>
+            <button class="square-btn model-btn" data-model="hairpin">Hairpin</button>
+          </div>
+        </div>
+
+        <div class="control-card">
+          <h3>Animation</h3>
+          <div class="square-btn-grid">
+            <button class="square-btn" id="rotateBtn">Rotate</button>
+            <button class="square-btn" id="floatBtn">Float</button>
+            <button class="square-btn" id="stopBtn">Stop</button>
+            <button class="square-btn" id="resetBtn">Reset</button>
+          </div>
+        </div>
+
+        <div class="control-card">
+          <h3>Display</h3>
+          <div class="square-btn-grid">
+            <button class="square-btn" id="wireframeBtn">Wireframe</button>
+            <button class="square-btn" id="lightBtn">Light</button>
+            <button class="square-btn" id="audioBtn">Music</button>
+          </div>
+        </div>
+
+        <div class="control-card">
+          <h3>Camera</h3>
+          <div class="square-btn-grid">
+            <button class="square-btn" id="frontViewBtn">Front</button>
+            <button class="square-btn" id="sideViewBtn">Side</button>
+            <button class="square-btn" id="topViewBtn">Top</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="model-zones">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Model Sections</p>
+          <h2>Featured Cultural Objects</h2>
+        </div>
+      </div>
+
+      <div class="zones-grid">
+        <article class="zone-card zone-fan active-zone" data-model="fan">
+          <div class="zone-top">
+            <span class="zone-number">01</span>
+            <span class="zone-type">Decorative Heritage</span>
+          </div>
+          <h3>Chinese Round Fan</h3>
+          <p>
+            This object represents the elegance of Chinese decorative tradition. Its circular
+            silhouette, long handle, and refined surface treatment reflect grace, poise,
+            and the quiet beauty associated with classical visual culture.
+          </p>
+          <button class="zone-link model-btn" data-model="fan">View Fan</button>
+        </article>
+
+        <article class="zone-card zone-panda" data-model="panda">
+          <div class="zone-top">
+            <span class="zone-number">02</span>
+            <span class="zone-type">National Symbol</span>
+          </div>
+          <h3>Symbolic Panda</h3>
+          <p>
+            The panda introduces warmth and familiarity into the exhibition. As an
+            internationally recognised symbol connected with China, it brings a softer,
+            more approachable cultural identity that balances the ornamental objects.
+          </p>
+          <button class="zone-link model-btn" data-model="panda">View Panda</button>
+        </article>
+
+        <article class="zone-card zone-hairpin" data-model="hairpin">
+          <div class="zone-top">
+            <span class="zone-number">03</span>
+            <span class="zone-type">Classical Ornament</span>
+          </div>
+          <h3>Classical Hairpin</h3>
+          <p>
+            This object reflects the artistry of traditional Chinese adornment. Its
+            ornamental structure and precious material language suggest delicacy,
+            craftsmanship, and the visual richness of classical dress and ceremonial styling.
+          </p>
+          <button class="zone-link model-btn" data-model="hairpin">View Hairpin</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="reference-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Reference / Media</p>
+          <h2>Visual Notes</h2>
+        </div>
+      </div>
+
+      <div class="reference-grid">
+        <div class="reference-card">
+          <div class="reference-thumb image-thumb">
+            <img src="assets/images/fan-ref.png" alt="Chinese round fan reference image" />
+          </div>
+          <h3>Fan Reference</h3>
+          <p>
+            This reference image supports the fan model design by showing its circular silhouette,
+            decorative surface, and traditional material character.
+          </p>
+        </div>
+
+        <div class="reference-card">
+          <div class="reference-thumb image-thumb">
+            <img src="assets/images/panda-ref.png" alt="Cute panda reference image" />
+          </div>
+          <h3>Panda Reference</h3>
+          <p>
+            This reference image supports the panda model design by defining the simplified
+            proportions, soft form, and friendly expression.
+          </p>
+        </div>
+
+        <div class="reference-card">
+          <div class="reference-thumb image-thumb">
+            <img src="assets/images/hairpin.png" alt="Traditional hairpin reference image" />
+          </div>
+          <h3>Hairpin Reference</h3>
+          <p>
+            This reference image supports the hairpin model design by showing its ornamental
+            structure, metallic feeling, and classical decorative detail.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Cultural Gallery</p>
+          <h2>Chinese Fan — Historical Context</h2>
+        </div>
+      </div>
+      <p class="gallery-intro">
+        The following images explore the cultural heritage of the Chinese round fan — from its
+        decorative painted surfaces to its symbolic role in court life, opera, and classical art.
+        These references informed the visual and material choices made in the 3D model design.
+      </p>
+
+      <div class="gallery-strip">
+        <div class="gallery-item">
+          <img src="assets/fan-description/Chinese Fan 1 .jpeg" alt="Chinese round fan reference 1" />
+          <p>Traditional round fan — circular silhouette and handle form</p>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/fan-description/Chinese Fan 2.jpeg" alt="Chinese round fan reference 2" />
+          <p>Painted surface with decorative motif detail</p>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/fan-description/Chinese Fan 3.jpeg" alt="Chinese round fan reference 3" />
+          <p>Silk fan with ornamental tassel and bamboo frame</p>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/fan-description/Chinese Fan 4.jpeg" alt="Chinese round fan reference 4" />
+          <p>Classical fan form as used in court and ceremonial settings</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Cultural Gallery</p>
+          <h2>Giant Panda — Symbol &amp; Heritage</h2>
+        </div>
+      </div>
+      <p class="gallery-intro">
+        The following images explore the cultural significance of the giant panda as a national
+        symbol of China — from its natural habitat to its role in diplomacy and global identity.
+        These references informed the proportions and character of the 3D panda model.
+      </p>
+
+      <div class="gallery-strip">
+        <div class="gallery-item">
+          <img src="assets/panda- description/panda 1.jpeg" alt="Giant panda reference 1" />
+          <p>Giant panda in its natural mountain forest habitat</p>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/panda- description/panda 2.jpeg" alt="Giant panda reference 2" />
+          <p>Characteristic black-and-white colouring and body form</p>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/panda- description/panda 3.jpeg" alt="Giant panda reference 3" />
+          <p>Soft, rounded proportions that informed the 3D model design</p>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/panda- description/panda 4.jpeg" alt="Giant panda reference 4" />
+          <p>Panda as a national symbol and ambassador of Chinese identity</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Cultural Gallery</p>
+          <h2>Classical Hairpin — Ornament &amp; Tradition</h2>
+        </div>
+      </div>
+      <p class="gallery-intro">
+        The following images explore the history and artistry of the classical Chinese hairpin —
+        from its Tang Dynasty origins to its role as a symbol of femininity, ceremony, and
+        refined personal adornment. These references informed the ornamental structure and
+        metallic surface treatment of the 3D hairpin model.
+      </p>
+
+      <div class="gallery-strip">
+        <div class="gallery-item">
+          <img src="assets/HairPin- description/hair pin 1.jpg" alt="Classical hairpin reference 1" />
+          <p>Tang Dynasty gold hairpin with floral ornament</p>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/HairPin- description/hair pin 2.jpg" alt="Classical hairpin reference 2" />
+          <p>Jade and gold hairpin from imperial court collection</p>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/HairPin- description/hair pin 3.jpg" alt="Classical hairpin reference 3" />
+          <p>Kingfisher feather inlay hairpin — diàncuì technique</p>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/HairPin- description/hair pin 4.jpg" alt="Classical hairpin reference 4" />
+          <p>Ceremonial hairpin worn in classical court hairstyle</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="extra-section">
+      <div class="extra-card">
+        <p class="eyebrow">Visual Direction</p>
+        <h3>Tang Sancai Colour Palette</h3>
+        <p>
+          The interface draws inspiration from Tang Sancai glazing, using muted amber,
+          ceramic green, earthy cream, and deep brown to create a warm and culturally
+          rooted visual identity.
+        </p>
+      </div>
+
+      <div class="extra-card">
+        <p class="eyebrow">Quick Notes</p>
+        <h3>Development Notes</h3>
+        <p>
+          This website is designed not only as a 3D object viewer, but also as a digital
+          presentation of Chinese traditional culture through symbolic forms, visual storytelling,
+          and interactive presentation.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Tang Sancai 3D Collection &middot; Web 3D Assignment &middot; University of Sussex 2026</p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ffmpeg -version)",
+      "Bash(xargs ls:*)",
+      "Bash(du -sh \"/Users/sissi/Desktop/Web 3D Application/assignment/model/\"*)",
+      "Bash(du -sh \"/Users/sissi/Desktop/Web 3D Application/assignment/assets/\"*)"
+    ]
+  }
+}

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Chinese Cultural Treasures</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="ink-theme">
+  <div class="ink-bg"></div>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-block">
+        <h1>About This Exhibition</h1>
+        <p class="brand-subtitle">
+          Curatorial concept, cultural symbolism, 3D model design, interaction rationale, and development documentation
+        </p>
+      </div>
+
+      <nav class="site-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+
+    <!-- PROJECT OVERVIEW -->
+    <section class="about-hero">
+      <div class="about-hero-card">
+        <p class="eyebrow">Project Overview</p>
+        <h2>Chinese Cultural Treasures</h2>
+        <p>
+          This Web 3D application presents three iconic Chinese cultural objects — a round fan
+          (<em>tuánshàn</em>), a stylised giant panda, and a classical hairpin (<em>fāzān</em>) —
+          through an interactive 3D viewer built with Three.js, HTML5, CSS3, and JavaScript.
+          Each object was modelled in Autodesk Maya and loaded into the browser, where the user can
+          rotate, inspect, toggle wireframe, adjust lighting, and switch camera angles.
+        </p>
+        <p style="margin-top: 12px;">
+          The visual identity draws on the earthy glaze palette of Tang Sancai ceramics —
+          amber, ceramic green, cream, and deep brown — creating a warm, culturally rooted
+          aesthetic that frames the objects without competing with them.
+        </p>
+      </div>
+
+      <div class="about-hero-card">
+        <p class="eyebrow">Design Direction</p>
+        <h2>Curatorial Intent</h2>
+        <p>
+          The central aim is to present Chinese material culture not merely as decoration but
+          as a series of layered symbolic objects, each carrying its own historical and aesthetic
+          meaning. The interface is designed to support storytelling: the right-hand panel updates
+          with cultural context as the user switches models, while the controls section offers
+          genuine 3D interaction rather than passive display.
+        </p>
+        <p style="margin-top: 12px;">
+          The three objects were chosen deliberately to represent different registers of
+          Chinese cultural life — refined decorative art, national natural symbolism, and
+          classical personal adornment — together forming a small but coherent cultural portrait.
+        </p>
+      </div>
+    </section>
+
+    <!-- CULTURAL CONTEXT -->
+    <section class="about-section-grid">
+      <article class="about-card">
+        <p class="eyebrow">Aesthetic Foundation</p>
+        <h3>Tang Sancai Colour Language</h3>
+        <p>
+          Tang Sancai (<em>唐三彩</em>) refers to the three-colour lead-glazed ceramics
+          produced during the Tang Dynasty (618–907 CE). The characteristic palette of
+          amber yellow, viridian green, and creamy white was achieved through the use of
+          iron, copper, and tin oxides respectively. These wares were often buried as
+          funerary objects and have been recovered from tombs across the Silk Road network,
+          making them emblems of Tang cosmopolitanism and material sophistication.
+        </p>
+        <p style="margin-top: 10px;">
+          The interface palette directly references this tradition: the warm amber tones,
+          muted greens, and earthy creams seen in the header, card surfaces, and button
+          gradients all echo Tang Sancai glaze combinations.
+        </p>
+      </article>
+
+      <article class="about-card">
+        <p class="eyebrow">Cultural Framework</p>
+        <h3>Objects as Cultural Carriers</h3>
+        <p>
+          In Chinese cultural tradition, everyday objects are rarely purely functional.
+          The fan conveys a social and aesthetic identity; the hairpin signals status,
+          occasion, and femininity; even the panda — though a living animal — has been
+          constructed through decades of diplomacy and visual culture into a potent national
+          symbol. This exhibition treats each object as a carrier of cultural meaning,
+          using both the 3D form and the descriptive text to surface those layers.
+        </p>
+        <p style="margin-top: 10px;">
+          This approach is informed by material culture studies, which argues that objects
+          embody social relations, aesthetic values, and historical memory in ways that
+          direct representation cannot.
+        </p>
+      </article>
+
+      <article class="about-card">
+        <p class="eyebrow">Visual Strategy</p>
+        <h3>Ink Wash Influence</h3>
+        <p>
+          Alongside Tang Sancai, the site also draws on the visual grammar of Chinese ink
+          wash painting (<em>shuǐmò huà, 水墨画</em>). This tradition, which emerged during
+          the Tang and reached its classical form in the Song Dynasty (960–1279), prizes
+          restraint, negative space, and the suggestion of form over its literal rendering.
+          The light, layered background, the minimal grid lines, and the generous white space
+          around each object card reflect this aesthetic preference.
+        </p>
+      </article>
+
+      <article class="about-card">
+        <p class="eyebrow">Object Selection Rationale</p>
+        <h3>Why These Three?</h3>
+        <p>
+          The three objects occupy distinct cultural registers. The round fan belongs to the
+          domain of cultivated leisure and decorative art. The giant panda operates in the
+          register of national identity and diplomatic soft power. The hairpin is an object
+          of intimate personal adornment tied to ceremony and classical femininity. Together,
+          they represent public culture, natural identity, and private life — a deliberately
+          varied set of entry points into Chinese visual and material culture.
+        </p>
+      </article>
+    </section>
+
+    <!-- THREE OBJECTS DEEP DIVE -->
+    <section class="about-wide-section">
+      <div class="about-wide-card">
+        <p class="eyebrow">3D Model Documentation</p>
+        <h3>The Three Cultural Objects</h3>
+
+        <div class="object-note-grid">
+
+          <div class="object-note-card">
+            <h4>01 — Chinese Round Fan (团扇 Tuánshàn)</h4>
+            <p>
+              The round fan has a history stretching back to the Han Dynasty
+              (206 BCE – 220 CE), where it was used by members of the imperial court as
+              both a practical cooling device and a signifier of elegance and refinement.
+              By the Tang and Song periods, the round fan had become a canvas for painting
+              and calligraphy — artists including Su Shi and Ma Yuan painted directly onto
+              fan surfaces, creating miniature works of high cultural prestige.
+            </p>
+            <p style="margin-top: 10px;">
+              The fan's circular form carries symbolic weight in Chinese aesthetics:
+              the circle (<em>yuán, 圆</em>) represents completeness, harmony, and the
+              unity of heaven and earth. The long handle adds a sense of poise and
+              physical grace to the object. Fans appear frequently in classical Chinese
+              painting, opera costume, and literary imagery as a marker of cultivated taste.
+            </p>
+            <p style="margin-top: 10px;">
+              <strong>3D Design Notes:</strong> Modelled in Maya using a polygon disc for the fan
+              face, a revolved CV curve for the handle, and a tassel constructed from extruded
+              curves. The surface material uses a warm silk-like texture with painted motif detail.
+              The symmetry and silhouette of the object make it an ideal subject for front-view
+              and top-view camera exploration.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>02 — Giant Panda (大熊猫 Dàxióngmāo)</h4>
+            <p>
+              The giant panda (<em>Ailuropoda melanoleuca</em>) is native to the
+              mountain forests of central China, primarily Sichuan, Shaanxi, and Gansu
+              provinces. Although pandas have been recorded in Chinese natural history
+              texts for over two thousand years, their global cultural prominence is largely
+              a product of the twentieth century. China's use of pandas as diplomatic gifts
+              — most famously to the United States and the Soviet Union in the 1970s —
+              established the animal as a symbol of Chinese goodwill and international identity.
+            </p>
+            <p style="margin-top: 10px;">
+              Within the exhibition, the panda serves a specific curatorial function: it
+              introduces warmth, approachability, and contemporary cultural recognition into
+              a set otherwise dominated by historical decorative objects. It is also the only
+              living subject in the collection, making it a bridge between natural heritage
+              and cultural symbol-making.
+            </p>
+            <p style="margin-top: 10px;">
+              <strong>3D Design Notes:</strong> Modelled in Maya using polygon primitives —
+              spheres, cylinders, and capsule shapes — merged and smoothed to build the body,
+              head, limbs, and ears. The characteristic black-and-white colour blocking is
+              achieved through separate material assignments on each mesh region, keeping the
+              geometry clean and the rendering efficient.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>03 — Classical Hairpin (发簪 Fāzān)</h4>
+            <p>
+              The hairpin is one of the oldest forms of personal adornment in Chinese culture,
+              with examples recovered from Neolithic archaeological sites. During the Tang
+              Dynasty, hairpins reached an apex of material elaboration: court women wore
+              multiple hairpins simultaneously, crafted from gold, silver, jade, tortoiseshell,
+              and kingfisher feather inlay (<em>diǎncuì, 点翠</em>). The hairpin's form —
+              a long pin with an ornamental head — created a visual accent point in elaborate
+              court hairstyles that could signal dynasty loyalty, seasonal occasion, or marital status.
+            </p>
+            <p style="margin-top: 10px;">
+              In classical Chinese poetry, the hairpin appears as a recurring motif of feminine
+              beauty and romantic longing. In the Dream of the Red Chamber (<em>Hóng Lóu Mèng</em>),
+              hairpins function as charged objects exchanged between characters, carrying emotional
+              and symbolic weight beyond their material form.
+            </p>
+            <p style="margin-top: 10px;">
+              <strong>3D Design Notes:</strong> Modelled in Maya using a CV curve revolved into
+              a surface for the tapered pin shaft, with the ornamental head built from boolean
+              operations on polygon primitives. A metallic material with specular highlights is
+              applied to simulate gold surface quality. It is the most geometrically intricate of
+              the three models, with the ornamental head providing significant detail for
+              close-up and side-view inspection.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL IMPLEMENTATION -->
+    <section class="about-section-grid">
+      <article class="about-card">
+        <p class="eyebrow">Technical Stack</p>
+        <h3>Web Technologies Used</h3>
+        <ul class="about-list">
+          <li><strong>HTML5</strong> — semantic page structure, sectioning, ARIA-aware markup</li>
+          <li><strong>CSS3</strong> — custom properties, grid layout, backdrop blur, responsive breakpoints</li>
+          <li><strong>JavaScript (ES6)</strong> — DOM manipulation, event-driven model control, Three.js API calls</li>
+          <li><strong>Three.js</strong> — WebGL 3D scene management, model loading, lighting, camera control</li>
+          <li><strong>Autodesk Maya</strong> — 3D model creation, UV unwrapping, material assignment, export to GLTF/GLB</li>
+        </ul>
+      </article>
+
+      <article class="about-card">
+        <p class="eyebrow">3D Integration</p>
+        <h3>Three.js Scene Architecture</h3>
+        <p>
+          Each model is exported from Maya as a GLB file and loaded via the Three.js
+          <code>GLTFLoader</code>. A shared scene is maintained across model switches;
+          a <strong>pivot Group</strong> wrapper centres each model at the world origin,
+          ensuring self-rotation rather than orbital rotation. A four-light rig (ambient,
+          key, fill, rim) is used when Light is ON; Light OFF uses high-intensity ambient
+          only for flat natural display.
+        </p>
+        <p style="margin-top: 10px;">
+          Camera presets (front, side, top) reposition the <code>PerspectiveCamera</code>
+          and call <code>OrbitControls.update()</code>. Wireframe mode traverses all meshes
+          and toggles <code>material.wireframe</code>. Two animation modes are available:
+          continuous Y-axis rotation and a float animation (sinusoidal Y oscillation with
+          slow drift), both driven by <code>requestAnimationFrame</code>.
+        </p>
+      </article>
+
+      <article class="about-card">
+        <p class="eyebrow">Interface Design</p>
+        <h3>Layout and Interaction Logic</h3>
+        <p>
+          The homepage is divided into four primary zones: a 3D viewer panel (left), a
+          cultural information panel (right), a controls strip, and a model card gallery below.
+          When the user selects a new model — either via the control buttons or the zone cards —
+          the JavaScript updates the 3D viewer, swaps the text content in the information panel,
+          and updates the status strip. This content-swapping approach means the page never
+          reloads; all state changes are driven by event listeners.
+        </p>
+      </article>
+
+      <article class="about-card">
+        <p class="eyebrow">Responsive Behaviour</p>
+        <h3>Breakpoints and Adaptations</h3>
+        <p>
+          The layout uses CSS Grid with defined breakpoints at 1100 px and 900 px.
+          At 1100 px, multi-column grids in the controls and reference sections collapse
+          to two or one column. At 900 px, the main hero layout shifts from a two-column
+          split to a single stacked column, and the header navigation adjusts to wrap
+          beneath the brand block. All interactive buttons remain accessible at mobile scale.
+        </p>
+      </article>
+    </section>
+
+    <!-- INTERACTION FEATURES -->
+    <section class="about-wide-section">
+      <div class="about-wide-card">
+        <p class="eyebrow">Interaction Design</p>
+        <h3>Control Features and Their Purpose</h3>
+
+        <div class="object-note-grid">
+          <div class="object-note-card">
+            <h4>Model Switch</h4>
+            <p>
+              Three square buttons labelled Fan, Panda, and Hairpin allow the user to load
+              each model into the viewer. On selection, the 3D object, descriptive text,
+              meta information, and status display all update simultaneously via JavaScript
+              DOM manipulation. The active model button is highlighted in green to confirm
+              the current selection.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>Animation Controls</h4>
+            <p>
+              <strong>Rotate</strong> triggers continuous Y-axis self-rotation.
+              <strong>Float</strong> activates a sinusoidal bobbing animation — the model
+              gently rises and falls with a slow Y-axis drift and subtle Z tilt, evoking
+              the feeling of a cultural artefact suspended in display space.
+              <strong>Stop</strong> pauses all animation. <strong>Reset</strong> returns
+              position, rotation, wireframe, and lighting to their default states.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>Wireframe Toggle</h4>
+            <p>
+              The Wireframe button toggles the material's wireframe property on all meshes
+              of the active model. This reveals the underlying geometry — the number of
+              polygon faces, edge loops, and structural decisions made during modelling.
+              It is an educational feature that makes the construction of the 3D object visible.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>Light Control</h4>
+            <p>
+              A secondary directional light can be switched on or off to alter the shading
+              of the active model. With the light off, a single ambient and directional source
+              is used. With the light on, a second fill light from the opposite side reduces
+              shadow depth and reveals surface detail on the darker faces of the mesh.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>Camera Presets</h4>
+            <p>
+              Front, Side, and Top buttons reposition the PerspectiveCamera to three preset
+              positions around the model. Each view is paired with an appropriate look-at
+              target. This allows structured comparison of the model's profile from defined
+              angles rather than only freeform orbit. OrbitControls remain active after each
+              camera jump, so the user can continue adjusting from the new position.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>Music Control</h4>
+            <p>
+              A <strong>Music</strong> button in the Display section toggles background
+              ambient audio on and off. The audio is a looping track that plays at a
+              reduced volume (0.4) to complement the exhibition atmosphere without
+              distracting from the 3D content. Playback state is reflected in the status
+              strip and respects browser autoplay policies — audio only begins after an
+              explicit user gesture.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>Status Strip</h4>
+            <p>
+              A persistent status row below the viewer displays the currently active model
+              name, wireframe state (On / Off), light state (On / Off), camera position
+              (Front / Side / Top), and music playback state (On / Off). This gives users
+              a clear readout of all interaction states without requiring them to read
+              button colours or positions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEVELOPMENT NOTES -->
+    <section class="about-section-grid">
+      <article class="about-card">
+        <p class="eyebrow">Development Process</p>
+        <h3>Build Sequence</h3>
+        <p>
+          Development followed a structured sequence: HTML structure and CSS layout were
+          established first as a static design, then JavaScript control logic was added,
+          then the Three.js scene was integrated into the viewer container, and finally
+          the Maya models were exported and loaded. This order ensured the interface
+          remained testable and legible at every stage, independent of the 3D assets.
+        </p>
+      </article>
+
+      <article class="about-card">
+        <p class="eyebrow">Modelling Workflow</p>
+        <h3>Maya Pipeline</h3>
+        <p>
+          All three objects were created in Autodesk Maya using polygon modelling techniques.
+          The fan uses a disc base with edge loop refinements and a lathe-modified handle.
+          The panda uses merged polygon primitives shaped with the sculpt deformer.
+          The hairpin uses a CV curve revolved into a surface for the pin shaft with
+          a boolean-refined ornamental head. Models were exported as GLB files
+          with embedded materials for efficient browser loading.
+        </p>
+      </article>
+
+      <article class="about-card">
+        <p class="eyebrow">Usability</p>
+        <h3>Interface Clarity</h3>
+        <p>
+          Button labels are explicit and consistent. Active states use a distinct green
+          colour to confirm selection. The status strip below the viewer provides a
+          real-time summary of all toggleable states. Section headings use a small-caps
+          eyebrow label above each title to clarify the function of each panel.
+          Navigation between Home and About is persistent in the header.
+        </p>
+      </article>
+
+      <article class="about-card">
+        <p class="eyebrow">Accessibility</p>
+        <h3>Accessibility Considerations</h3>
+        <p>
+          Text contrast is maintained above WCAG AA ratios throughout. Navigation links
+          use visible active states. All section headings follow a logical H1 → H2 → H3
+          document hierarchy. Image elements carry descriptive alt attributes. Interactive
+          buttons use semantic <code>&lt;button&gt;</code> elements to ensure keyboard
+          and screen reader accessibility. Further improvements could include ARIA live
+          regions for the model status updates.
+        </p>
+      </article>
+    </section>
+
+    <!-- MVC ARCHITECTURE -->
+    <section class="about-wide-section">
+      <div class="about-wide-card">
+        <p class="eyebrow">Software Architecture</p>
+        <h3>MVC Design Pattern</h3>
+
+        <div class="object-note-grid">
+          <div class="object-note-card">
+            <h4>Model (Data Layer)</h4>
+            <p>
+              The <code>modelData</code> object in <code>js/main.js</code> acts as the
+              application's data model. It stores all per-object metadata — name, file path,
+              theme, material description, cultural description, context, and concept text —
+              as a structured JavaScript object keyed by model identifier (<code>"fan"</code>,
+              <code>"panda"</code>, <code>"hairpin"</code>). The Three.js scene graph,
+              loaded pivot groups, and light/state variables also form part of the model layer,
+              representing the current 3D application state.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>View (Presentation Layer)</h4>
+            <p>
+              The View is split across two files. <code>index.html</code> defines the static
+              DOM structure — the viewer panel, side-info panel, control cards, zone cards,
+              reference gallery, and status strip — using semantic HTML5 elements.
+              <code>css/style.css</code> handles all visual presentation through CSS custom
+              properties, Grid layout, backdrop blur, and responsive breakpoints, with no
+              inline styles on dynamic elements. The Three.js <code>WebGLRenderer</code>
+              canvas is also a View component, rendering the 3D scene into
+              <code>#model-container</code>.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>Controller (Logic Layer)</h4>
+            <p>
+              <code>js/main.js</code> is the Controller. It attaches event listeners to all
+              buttons and zone cards, calls <code>switchToModel()</code> to load and display
+              the correct GLB, calls <code>updateUI()</code> to push new data from the Model
+              into the View's DOM elements, and manages all 3D scene state (wireframe, lights,
+              camera, animation). The <code>animate()</code> loop serves as the real-time
+              controller for the rendering pipeline and animation state machine.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEEPER UNDERSTANDING -->
+    <section class="about-wide-section">
+      <div class="about-wide-card">
+        <p class="eyebrow">Deeper Understanding</p>
+        <h3>Advanced Technical Features</h3>
+        <p style="color: var(--text-soft); margin-bottom: 18px;">
+          The following three features extend the application beyond the standard lab scope and
+          demonstrate deeper understanding of web 3D production.
+        </p>
+
+        <div class="object-note-grid">
+          <div class="object-note-card">
+            <h4>Feature 1 — IBL via PMREMGenerator</h4>
+            <p>
+              Image-Based Lighting (IBL) is implemented using Three.js
+              <code>PMREMGenerator</code> and <code>RoomEnvironment</code>. The generator
+              converts an analytic room environment into a prefiltered radiance environment
+              map (PMREM), which is assigned to <code>scene.environment</code>. All
+              <code>MeshStandardMaterial</code> instances in the loaded GLB files
+              automatically sample this map for physically correct ambient reflections —
+              particularly visible on the metallic hairpin surface and the fan's wooden
+              trim. This replaces the traditional point-light-only approach with a
+              physically based lighting model that responds to material roughness and
+              metalness values baked in Maya.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>Feature 2 — Post-Processing Bloom (UnrealBloomPass)</h4>
+            <p>
+              A post-processing pipeline is constructed using Three.js
+              <code>EffectComposer</code>, replacing the standard <code>renderer.render()</code>
+              call with a multi-pass pipeline: <code>RenderPass</code> →
+              <code>UnrealBloomPass</code> → <code>OutputPass</code>. The
+              <code>UnrealBloomPass</code> applies physically-inspired glow to pixels
+              exceeding a luminance threshold, simulating lens bloom on bright specular
+              highlights. Bloom parameters are tuned per model: the metallic hairpin uses
+              a higher strength (0.40) and lower threshold (0.90) to produce visible golden
+              glow on highlight areas; the matte fan and panda use near-invisible settings
+              (strength 0.08, threshold 0.98) to avoid overexposure of their diffuse
+              surfaces. The <code>OutputPass</code> handles final sRGB colour space
+              conversion and tone mapping output.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>Feature 3 — Float Animation (Story-Driven Motion)</h4>
+            <p>
+              Beyond simple object rotation, a float animation is implemented that uses a
+              <code>THREE.Clock</code> to drive sinusoidal position and rotation values per
+              frame. The Y position oscillates as <code>sin(t × 1.2) × 0.12</code> units,
+              creating a gentle bobbing motion. A secondary slow Y-axis rotation
+              (0.004 rad/frame) and a Z-axis tilt (<code>sin(t × 0.7) × 0.04</code> rad)
+              are overlaid to produce a compound motion that suggests the object is suspended
+              in an exhibition space. This animation mode is narratively justified: it
+              evokes the presentation of cultural artefacts in a curated display context,
+              going beyond the mechanical rotation covered in the lab tutorials. Autodesk
+              Maya was also used for all 3D modelling — a tool outside the lab curriculum
+              — demonstrating further depth of practice.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SITE MAP -->
+    <section class="about-wide-section">
+      <div class="about-wide-card">
+        <p class="eyebrow">Site Structure</p>
+        <h3>Site Map</h3>
+
+        <div class="object-note-grid">
+          <div class="object-note-card">
+            <h4>index.html — Main Exhibition</h4>
+            <p>
+              The primary 3D viewing experience. Contains the Three.js viewer panel,
+              cultural information sidebar, interaction controls (model switch, animation,
+              wireframe, light, camera), model zone cards, reference image gallery,
+              and visual direction notes. All core assignment deliverables are here.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>about.html — This Page</h4>
+            <p>
+              Project documentation covering curatorial concept, cultural context for all
+              three objects, 3D modelling approach, technical implementation, interaction
+              design rationale, statement of originality, references, and site map.
+            </p>
+          </div>
+
+          <div class="object-note-card">
+            <h4>Assets and Dependencies</h4>
+            <p>
+              <code>css/style.css</code> — custom stylesheet<br />
+              <code>js/main.js</code> — Three.js scene and interaction logic<br />
+              <code>model/</code> — GLB model files and PBR textures (fan, panda, hairpin)<br />
+              <code>assets/images/</code> — reference images for the gallery section
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATEMENT OF ORIGINALITY + REFERENCES -->
+    <section class="about-bottom-grid">
+      <div class="about-bottom-card">
+        <p class="eyebrow">Statement of Originality</p>
+        <h3>Original Work Declaration</h3>
+        <p>
+          All 3D models presented in this application — the Chinese round fan, the giant
+          panda, and the classical hairpin — were created from scratch in Autodesk Maya as original
+          geometry. The HTML structure, CSS design system, and JavaScript interaction logic
+          were written independently for this project. The cultural text content is original
+          writing informed by the academic and historical sources listed in the References
+          section below. No pre-made templates, third-party UI kits, or AI-generated code
+          were used in the construction of this site.
+        </p>
+      </div>
+
+      <div class="about-bottom-card">
+        <p class="eyebrow">References</p>
+        <h3>Sources and Inspiration</h3>
+        <ul class="about-list">
+          <li>
+            Vainker, S. (1991). <em>Chinese Pottery and Porcelain.</em>
+            London: British Museum Press. — Tang Sancai glaze history and palette.
+          </li>
+          <li>
+            Rawson, J. (ed.) (1992). <em>The British Museum Book of Chinese Art.</em>
+            London: British Museum Press. — Object symbolism and material culture.
+          </li>
+          <li>
+            Shaughnessy, E. (ed.) (1996). <em>China: The Land of the Heavenly Dragon.</em>
+            London: Duncan Baird. — Fan and hairpin cultural context.
+          </li>
+          <li>
+            Three.js Documentation. <em>threejs.org</em> — GLTFLoader, OrbitControls,
+            PerspectiveCamera, MeshStandardMaterial.
+          </li>
+          <li>
+            Autodesk. <em>autodesk.com/maya</em> — 3D modelling, UV mapping,
+            GLTF/GLB export pipeline via Maya plugin.
+          </li>
+          <li>
+            Shapiro, J. (2016). <em>China's Environmental Challenges.</em>
+            Cambridge: Polity. — Giant panda conservation and diplomatic context.
+          </li>
+        </ul>
+      </div>
+
+      <div class="about-bottom-card">
+        <p class="eyebrow">Asset Notes</p>
+        <h3>Models, Textures, and Images</h3>
+        <p>
+          All three 3D models are original Maya creations. No pre-made meshes or
+          purchased assets were used. Textures applied to the models are original
+          maps created and assigned within Maya's Hypershade workflow.
+        </p>
+        <p style="margin-top: 10px;">
+          Reference images in the gallery section (<code>fan-ref.png</code>,
+          <code>panda-ref.png</code>, <code>hairpin.png</code>) are mood-board images
+          gathered for design reference during the modelling phase and are used here
+          for illustrative purposes only.
+        </p>
+        <p style="margin-top: 10px;">
+          The Three.js library is used under the MIT licence.
+          All fonts are system-stack (Helvetica Neue / Arial) — no external font services
+          are loaded, removing any third-party data dependency.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Tang Sancai 3D Collection &middot; Web 3D Assignment &middot; University of Sussex 2026</p>
+  </footer>
+</body>
+</html>
