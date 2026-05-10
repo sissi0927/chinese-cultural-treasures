@@ -7,8 +7,6 @@ import { RenderPass }      from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass }      from 'three/addons/postprocessing/OutputPass.js';
 
-// ─── Model metadata ───────────────────────────────────────────────────────────
-
 const modelData = {
   fan: {
     name: "Chinese Round Fan",
@@ -54,8 +52,6 @@ const modelData = {
   }
 };
 
-// ─── DOM ─────────────────────────────────────────────────────────────────────
-
 const container      = document.getElementById("model-container");
 const loadingOverlay = document.getElementById("loading-overlay");
 const loadingText    = document.getElementById("loading-text");
@@ -76,15 +72,12 @@ const audioStatus         = document.getElementById("audio-status");
 const modelButtons = document.querySelectorAll(".model-btn");
 const zoneCards    = document.querySelectorAll(".zone-card");
 
-// ─── Renderer ─────────────────────────────────────────────────────────────────
-
 const initW = container.clientWidth  || 600;
 const initH = container.clientHeight || 420;
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(initW, initH);
-// Use LinearSRGBColorSpace internally; OutputPass handles final sRGB conversion
 renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
 renderer.toneMapping       = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.1;
@@ -92,28 +85,19 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type    = THREE.PCFSoftShadowMap;
 container.appendChild(renderer.domElement);
 
-// ─── Scene & Camera ───────────────────────────────────────────────────────────
-
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xf7f1e6);
 
 const camera = new THREE.PerspectiveCamera(45, initW / initH, 0.01, 1000);
 camera.position.set(0, 0, 4);
 
-// ─── IBL Environment (Deeper Understanding: Image-Based Lighting) ─────────────
-// PMREMGenerator converts the RoomEnvironment into a prefiltered radiance map.
-// MeshStandardMaterial uses this for physically correct reflections & ambient IBL,
-// dramatically improving the appearance of metallic surfaces (hairpin, fan trim).
-
 const pmremGenerator = new THREE.PMREMGenerator(renderer);
 pmremGenerator.compileEquirectangularShader();
 const roomEnv    = new RoomEnvironment();
 const envTexture = pmremGenerator.fromScene(roomEnv, 0.04).texture;
-scene.environment = envTexture;   // IBL for all PBR materials
+scene.environment = envTexture;
 roomEnv.dispose();
 pmremGenerator.dispose();
-
-// ─── OrbitControls ────────────────────────────────────────────────────────────
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping  = true;
@@ -122,14 +106,9 @@ controls.minDistance    = 0.5;
 controls.maxDistance    = 20;
 controls.target.set(0, 0, 0);
 
-// ─── Lighting ─────────────────────────────────────────────────────────────────
-// Light OFF → bright ambient only  (flat, natural, IBL reflections still active)
-// Light ON  → medium ambient + 3 directionals → visible specular highlights & bloom
-
 const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
 scene.add(ambientLight);
 
-// Directional lights — controlled by Light button (start hidden = Light OFF)
 const keyLight = new THREE.DirectionalLight(0xfff4e0, 3.5);
 keyLight.position.set(3, 5, 4);
 keyLight.castShadow = true;
@@ -147,26 +126,18 @@ rimLight.position.set(0, -3, -5);
 rimLight.visible = false;
 scene.add(rimLight);
 
-// ─── Post-Processing (Deeper Understanding: Bloom) ────────────────────────────
-// UnrealBloomPass adds physically-inspired glow to bright surfaces.
-// Threshold set high (0.90) so only specular highlights on metallic objects bloom —
-// visible primarily when Light is ON and directional lights create hot spots.
-
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
 
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2(initW, initH),
-  0.40,   // strength  (default; overridden per model)
-  0.50,   // radius
-  0.90    // threshold
+  0.40,
+  0.50,
+  0.90
 );
 composer.addPass(bloomPass);
 composer.addPass(new OutputPass());
 
-// Per-model bloom presets
-// hairpin: metallic — strong bloom on specular highlights looks intentional
-// fan / panda: matte/fabric — keep bloom nearly invisible to avoid overexposure
 const bloomPresets = {
   hairpin: { strength: 0.40, radius: 0.50, threshold: 0.90 },
   fan:     { strength: 0.08, radius: 0.30, threshold: 0.98 },
@@ -180,8 +151,6 @@ function applyBloomPreset(key) {
   bloomPass.threshold = p.threshold;
 }
 
-// ─── State ────────────────────────────────────────────────────────────────────
-
 let currentModelKey  = "fan";
 let wireframeOn      = false;
 let mainLightOn      = false;
@@ -190,10 +159,6 @@ let isFloating       = false;
 let floatClock       = new THREE.Clock();
 let loadedModels     = {};
 let activeModelGroup = null;
-
-// ─── Normalise: pivot wrapper ─────────────────────────────────────────────────
-// Wraps the GLTF scene in a pivot Group whose local origin == model centre.
-// Rotating the pivot therefore produces self-rotation (no orbiting).
 
 function normaliseModel(gltfScene) {
   const box1   = new THREE.Box3().setFromObject(gltfScene);
@@ -212,14 +177,13 @@ function normaliseModel(gltfScene) {
   return pivot;
 }
 
-// ─── Loading ──────────────────────────────────────────────────────────────────
-
 const loader = new GLTFLoader();
 
 function showOverlay(text) {
   loadingText.textContent = text;
   loadingOverlay.classList.remove("hidden");
 }
+
 function hideOverlay() {
   loadingOverlay.classList.add("hidden");
 }
@@ -266,8 +230,6 @@ function switchToModel(key) {
   });
 }
 
-// ─── Wireframe ────────────────────────────────────────────────────────────────
-
 function applyWireframe(group, state) {
   group.traverse((child) => {
     if (!child.isMesh) return;
@@ -275,8 +237,6 @@ function applyWireframe(group, state) {
     mats.forEach(m => { m.wireframe = state; });
   });
 }
-
-// ─── Camera presets ───────────────────────────────────────────────────────────
 
 const cameraPresets = {
   Front: new THREE.Vector3(0, 0, 4),
@@ -293,8 +253,6 @@ function setCameraPreset(name) {
   controls.update();
   cameraStatus.textContent = name;
 }
-
-// ─── UI update ────────────────────────────────────────────────────────────────
 
 function updateUI(key) {
   const data = modelData[key];
@@ -316,25 +274,21 @@ function updateUI(key) {
   );
 }
 
-// ─── Light helper ─────────────────────────────────────────────────────────────
-
 function setLights(on) {
   mainLightOn = on;
   if (on) {
-    ambientLight.intensity = 1.2;   // lower ambient so directionals create contrast
+    ambientLight.intensity = 1.2;
     keyLight.visible       = true;
     fillLight.visible      = true;
     rimLight.visible       = true;
   } else {
-    ambientLight.intensity = 2.0;   // bright flat ambient — natural texture display
+    ambientLight.intensity = 2.0;
     keyLight.visible       = false;
     fillLight.visible      = false;
     rimLight.visible       = false;
   }
   lightStatus.textContent = on ? "On" : "Off";
 }
-
-// ─── Button listeners ─────────────────────────────────────────────────────────
 
 modelButtons.forEach(btn => {
   btn.addEventListener("click", () => {
@@ -352,26 +306,22 @@ zoneCards.forEach(card => {
   });
 });
 
-// Rotate — continuous Y-axis self-rotation
 document.getElementById("rotateBtn")?.addEventListener("click", () => {
   isRotating = true;
   isFloating = false;
 });
 
-// Float — gentle bobbing + slow drift (sophisticated animation for storytelling)
 document.getElementById("floatBtn")?.addEventListener("click", () => {
   isFloating = true;
   isRotating = false;
-  floatClock  = new THREE.Clock();  // reset clock so oscillation starts smoothly from 0
+  floatClock = new THREE.Clock();
 });
 
-// Stop
 document.getElementById("stopBtn")?.addEventListener("click", () => {
   isRotating = false;
   isFloating = false;
 });
 
-// Reset
 document.getElementById("resetBtn")?.addEventListener("click", () => {
   isRotating = false;
   isFloating = false;
@@ -386,24 +336,20 @@ document.getElementById("resetBtn")?.addEventListener("click", () => {
   setCameraPreset("Front");
 });
 
-// Wireframe
 document.getElementById("wireframeBtn")?.addEventListener("click", () => {
   wireframeOn = !wireframeOn;
   if (activeModelGroup) applyWireframe(activeModelGroup, wireframeOn);
   wireframeStatus.textContent = wireframeOn ? "On" : "Off";
 });
 
-// Light toggle
 document.getElementById("lightBtn")?.addEventListener("click", () => {
   setLights(!mainLightOn);
 });
 
-// Camera presets
 document.getElementById("frontViewBtn")?.addEventListener("click", () => setCameraPreset("Front"));
 document.getElementById("sideViewBtn")?.addEventListener("click",  () => setCameraPreset("Side"));
 document.getElementById("topViewBtn")?.addEventListener("click",   () => setCameraPreset("Top"));
 
-// Audio toggle — background ambient music
 const bgm = document.getElementById("bgm");
 let audioOn = false;
 
@@ -415,15 +361,11 @@ document.getElementById("audioBtn")?.addEventListener("click", () => {
     audioStatus.textContent = "Off";
   } else {
     bgm.volume = 0.4;
-    bgm.play().catch(() => {
-      // Autoplay policy: browser blocked play before user gesture — silently ignore
-    });
+    bgm.play().catch(() => {});
     audioOn = true;
     audioStatus.textContent = "On";
   }
 });
-
-// ─── Resize ───────────────────────────────────────────────────────────────────
 
 new ResizeObserver(() => {
   const w = container.clientWidth;
@@ -432,37 +374,28 @@ new ResizeObserver(() => {
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
-  composer.setSize(w, h);         // keep composer in sync with canvas size
-  bloomPass.resolution.set(w, h); // keep bloom resolution in sync
+  composer.setSize(w, h);
+  bloomPass.resolution.set(w, h);
 }).observe(container);
-
-// ─── Animation loop ───────────────────────────────────────────────────────────
 
 function animate() {
   requestAnimationFrame(animate);
 
   if (activeModelGroup) {
-    // Self-rotation around pivot Y axis
     if (isRotating) {
       activeModelGroup.rotation.y += 0.008;
     }
-
-    // Floating / breathing animation — gentle Y oscillation + subtle tilt
-    // Demonstrates "sophisticated animation that supports the story" (Deeper Understanding)
     if (isFloating) {
       const t = floatClock.getElapsedTime();
-      activeModelGroup.position.y   = Math.sin(t * 1.2) * 0.12;
-      activeModelGroup.rotation.y  += 0.004;
-      activeModelGroup.rotation.z   = Math.sin(t * 0.7) * 0.04;
+      activeModelGroup.position.y  = Math.sin(t * 1.2) * 0.12;
+      activeModelGroup.rotation.y += 0.004;
+      activeModelGroup.rotation.z  = Math.sin(t * 0.7) * 0.04;
     }
   }
 
   controls.update();
-  composer.render();   // post-processing pipeline (bloom → OutputPass)
+  composer.render();
 }
 
 animate();
-
-// ─── Boot ─────────────────────────────────────────────────────────────────────
-
 switchToModel("fan");
